@@ -34,7 +34,6 @@ export default {
       return this.$store.state.user
     },
     messages() {
-      console.log(this.$store.state.messages, "messages")
       return this.$store.state.messages
     },
     chatRoom() {
@@ -42,7 +41,6 @@ export default {
     }
   },
   created() {
-    console.log(this.messages)
   }
 }
 </script>>

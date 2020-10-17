@@ -1,8 +1,12 @@
 <template>
   <div class="wrapper">
     <h1>
-      HEADLINE
+      Заголовок
     </h1>
+
+    <div v-if="errorBar" class="errorBar">
+      {{ errorBarMessage }}
+    </div>
 
     <div v-if="error" class="error-message">
       <h2>Введите данные</h2>
@@ -70,8 +74,22 @@ export default {
     return{ 
       name: "",
       room: "",
+      errorBar: false,
+      errorBarMessage: "",
       error: false
     }
+  },
+  created() {
+  },
+  mounted() {
+    const { message } = this.$route.query
+    
+    if (message === 'noUser') {
+      this.errorBarMessage = "Введите данные"
+    } else if (message === 'leftChat') {
+      this.errorBarMessage = "Вы покинули чат"
+    }
+    this.errorBar = !!message
   },
   methods: {
     ...mapMutations(['setUser']),

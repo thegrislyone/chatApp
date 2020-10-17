@@ -25,7 +25,6 @@ import {mapMutations} from 'vuex'
 export default {
   computed: {
     users() {
-      console.log(this.$store.state, "users")
       return this.$store.state.users
     },
     user() {
@@ -35,7 +34,6 @@ export default {
   methods: {
     ...mapMutations(['clearData']),
     exit() {
-      console.log('exit')
       this.$socket.emit('userLeft', this.user.id, () => {
         this.$router.push('/?message=leftChat')
         this.clearData()
