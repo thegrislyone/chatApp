@@ -14,12 +14,6 @@ export default {
   },
   methods: {
     sendMessage() {
-      console.log(
-        {
-        text: this.text, 
-        id: this.$store.state.user.id
-      }
-      )
       this.$socket.emit('createMessage', {
         text: this.text, 
         id: this.$store.state.user.id

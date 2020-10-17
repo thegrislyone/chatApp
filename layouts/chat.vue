@@ -3,10 +3,12 @@
     <div class="block">
       <div class="sidebar">
         <div 
-          v-for="(user, key) in users"
-          :key="key"
+          v-for="u in users"
+          :key="u.id"
         >
-          <div>{{ user.name }}</div>
+          <div :class="{
+            'active': u.id === user.id
+          }">{{ u.name }}</div>
         </div>
       </div>
       <div class="content">
@@ -23,31 +25,21 @@ import {mapMutations} from 'vuex'
 export default {
   computed: {
     users() {
-      return [
-        {
-          id: 0,
-          name: "user 1",
-          room: 1234
-        },
-        {
-          id: 1,
-          name: "user 2",
-          room: 1234
-        },
-        {
-          id: 2,
-          name: "user 3",
-          room: 1234
-        }
-      ]
+      console.log(this.$store.state, "users")
+      return this.$store.state.users
+    },
+    user() {
+      return this.$store.state.user
     },
   },
   methods: {
     ...mapMutations(['clearData']),
     exit() {
       console.log('exit')
-      this.$router.push('/?message=leftChat')
-      this.clearData()
+      this.$socket.emit('userLeft', this.user.id, () => {
+        this.$router.push('/?message=leftChat')
+        this.clearData()
+      })
     }
   }
 };
@@ -67,5 +59,8 @@ export default {
     padding: 10px 15px;
     display: flex;
     flex-direction: column;
+  }
+  .active {
+    color: red;
   }
 </style>
