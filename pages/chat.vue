@@ -7,6 +7,7 @@
         :name="message.name"
         :text="message.text"
         :owner="message.id === user.id"
+        :time="message.time"
       />
       <chatForm/>
     </ul>
@@ -39,6 +40,8 @@ export default {
     chatRoom() {
       return 'Комната ' + this.user.room
     }
+  },
+  watch: {
   },
   created() {
   }

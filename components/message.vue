@@ -8,6 +8,7 @@
           <span v-if="owner">ВЫ-</span>
           <span>{{ name }}</span>
           <p>{{ text }}</p>
+          <span>Дата - {{ time }}</span>
         </div>
       </div>
     </div>
@@ -18,10 +19,13 @@ export default {
   props: {
     name: String,
     text: String,
+    time: String,
     owner: {
       type: Boolean,
       default: false
     }
+  },
+  computed: {
   }
 }
 </script>

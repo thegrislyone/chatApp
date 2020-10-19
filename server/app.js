@@ -4,6 +4,16 @@ const io = require('socket.io')(server)
 const users = require('./users')()
 
 const m = (name, text, id) => ({name, text, id})
+const mVd = (name, text, id, time) => ({name, text, id, time})
+
+const dateFormatting = function() {
+  const d = new Date(),
+  
+        hours = (String(d.getHours()).length == 1) ? ('0' + String(d.getHours())) : (String(d.getHours())),
+        minutes = (String(d.getMinutes()).length == 1) ? ('0' + String(d.getMinutes())) : (String(d.getMinutes()))
+        
+  return `${hours}:${minutes}`
+}
 
 io.on('connection', socket => {
   socket.on('userJoined', (data, cb) => {
@@ -36,7 +46,7 @@ io.on('connection', socket => {
 
       const user = users.get(data.id)
       if (user) {
-        io.to(user.room).emit('newMessage', m(user.name, data.text, data.id))
+        io.to(user.room).emit('newMessage', mVd( user.name, data.text, data.id, dateFormatting() ))
       }
       cb()
     })
