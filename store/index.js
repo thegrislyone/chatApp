@@ -1,7 +1,23 @@
-export const state = () => ({})
+export const state = () => ({
+  user: {},
+  messages: [],
+  users: []
+})
 
-export const actions = {
-  SOCKET_newMessage(ctx, data) {
-    console.log('Message received', data)
+export const mutations = {
+  setUser(state, user) {
+    state.user = user
+  },
+  clearData(state) {
+    state.user = {},
+    state.messages = []
+    state.users = []
+  },
+  SOCKET_newMessage(state, message) {
+    state.messages.push(message)
+  },
+  SOCKET_updateUsers(state, users) {
+    console.log(users, "ААААААААААА")
+    state.users = users
   }
 }
