@@ -1,61 +1,121 @@
 <template>
   <div class="wrapper">
-    <h1>
-      Заголовок
-    </h1>
 
-    <div v-if="errorBar" class="errorBar">
-      {{ errorBarMessage }}
-    </div>
+    <v-dialog
+      v-model="error"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">
+          {{ errorMessage }}
+        </v-card-title>
 
-    <div v-if="error" class="error-message">
-      <h2>Введите данные</h2>
-    </div>
+        <v-card-actions>
+          <v-spacer></v-spacer>
 
-    <div class="form">
-      <div class="form__block">
-        <label for="nameField">Никнейм</label>
-        <input 
-          type="text" 
-          name="" 
-          id="nameField"
-          placeholder="Введите никнейм"
-          v-model="name"
-        >
+          <v-btn
+            color="green darken-1"
+            text
+            @click="error = false"
+          >
+            Закрыть
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <header class="header">
+      <div class="header__subblock">
+        <div class="header__button-bar">
+          <div><span class="header__link">Главная</span></div>
+          <div><span class="header__link">FAQ</span></div>
+          <div><button class="header__button">Войти</button></div>
+        </div>
       </div>
-      
-       <div class="form__block">
-       <label for="roomField">Комната</label>
-        <input 
-          type="number" 
-          name="" 
-          id="roomField"
-          placeholder="Введите комнату"
-          v-model="room"
-        >
+    </header>
+
+    <div class="form-block">
+      <div class="form-block__form">
+        <div class="form-block__headline-block">
+          <h1 class="form-block__main-headline">Анонимный чат</h1>
+          <h2 class="form-block__second-headline">Найди себе собеседника</h2>
+        </div>
+        <div class="form-block__form-wrapper">
+          <div class="form-block__input-wrapper">
+            <input 
+              type="text"
+              :class="{
+                'input_error': nameError
+              }"
+              v-model="name"
+            >
+            <div 
+              v-if="nameError"
+              class="error_message"
+            >
+              Заполните поле
+            </div>
+          </div>
+          <div class="form-block__input-wrapper">
+            <input 
+              :type="(roomShow) ? 'text' : 'password'"
+              :class="{
+                'input_error': roomError
+              }"
+              v-model="room"
+            >
+            <div 
+              class="room-input"
+              @click="roomShow = !roomShow"
+              :class="{
+                'room-input_show': roomShow,
+                'room-input_hide': !roomShow
+              }"
+            ></div>
+            <div 
+              v-if="roomError"
+              class="error_message"
+            >
+              Заполните поле
+            </div>
+          </div>
+          <div class="form-block__button-wrapper">
+            <button 
+              class="form-block__button"
+              @click="submitForm"
+            >
+              Начать чат
+            </button>
+          </div>
+        </div>
       </div>
-      <button @click="submitForm">Подключиться</button>
+      <div class="form-block__img">
+        <img src="../assets/icons/form-bg.png" alt="">
+      </div>
     </div>
+
+    <div class="description">
+      <div class="description__img">
+        <img src="../assets/icons/description-bg.png" alt="">
+      </div>
+      <div class="description__block">
+        <h1>Как это работает?</h1>
+        <p>
+          *Название чата* - это удобный мессенджер с помощью которого вы можете остаться абсолютно неизвестным своему собеседнику. Для того, чтобы начать чат, нужно написать имя и создать комнату для общения. Приглашайте друзей или  вступайте в друге чаты и общайтесь анонимно на интересные темы. 
+        </p>
+      </div>
+    </div>
+
+    <footer class="footer">
+
+    </footer>
+
   </div>
 </template>
 
 
 <style>
-  .error-message {
-    color: red;
-  }
-  label {
-    display: block;
-  }
-  .wrapper {
-    padding: 15px;
-  }
-  .form__block {
-    margin: 5px 0;
-  }
-  input {
-    border: 1px solid black;
-  }
+  
 </style>
 
 <script>
@@ -74,9 +134,14 @@ export default {
     return{ 
       name: "",
       room: "",
-      errorBar: false,
-      errorBarMessage: "",
-      error: false
+
+      nameError: false,
+      roomError: false,
+
+      errorMessage: "",
+      error: false,
+
+      roomShow: true
     }
   },
   created() {
@@ -85,15 +150,18 @@ export default {
     const { message } = this.$route.query
     
     if (message === 'noUser') {
-      this.errorBarMessage = "Введите данные"
+      this.errorMessage = "Введите данные"
     } else if (message === 'leftChat') {
-      this.errorBarMessage = "Вы покинули чат"
+      this.errorMessage = "Вы покинули чат"
     }
-    this.errorBar = !!message
+    this.error = !!message
   },
   methods: {
     ...mapMutations(['setUser']),
     submitForm() {
+      this.nameError = false
+      this.roomError = false
+
       if (this.name && this.room) {
         const user = {
           name: this.name,
@@ -110,7 +178,12 @@ export default {
           }
         })
       } else {
-        this.error = true 
+        if (!this.name) {
+          this.nameError = true
+        }
+        if (!this.room) {
+          this.roomError = true
+        }
       } 
     }
   }
