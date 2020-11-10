@@ -7,6 +7,7 @@
             <div :class="[owner ? 'member-owner-message' : 'member-other-message']">
                 <div class='member-message-name'>
                     <span>{{ name }}</span>
+                    <span class="time">{{ time }}</span>
                 </div>
             
                 <div class="member-message-text-wrap">
@@ -22,6 +23,7 @@ export default {
     props: {
         name: String,
         text: String,
+        time: String,
         owner: {
             type: Boolean,
             default: false
@@ -32,9 +34,6 @@ export default {
 
 
 <style scoped>
-    .member-text {
-
-    }
 
     .message {
         text-align: center;
@@ -59,10 +58,11 @@ export default {
         border-radius: 3px; 
         width: 100%;
         max-width: max-content;
-        margin-left: 2rem;
         padding: 7px 19px;
         padding-bottom: 5px;
-        text-align: left;
+        margin-left: auto;
+        margin-right: 2rem;
+        text-align: right;
     }
 
     .member-other-message {
@@ -74,10 +74,10 @@ export default {
         max-width: -webkit-max-content;
         max-width: -moz-max-content;
         max-width: max-content;
-        margin-left: auto;
-        margin-right: 2rem;
+        margin-left: 2rem;
+        margin-right: auto;
         padding-bottom: 5px;
-        text-align: right;
+        text-align: left;
     }
 
     .member-message-name {
@@ -87,13 +87,10 @@ export default {
         font-weight: 500;
         font-size: 16px;
         line-height: 19px;
+        text-align: left;
         color: #DCDCDC; 
         margin-bottom: 1px;
     }
-
-    /* .member-message {
-        
-    } */
 
     .member-message-text-wrpa {
         font-family: Roboto, 'sans-serif';
@@ -104,12 +101,19 @@ export default {
     }
     
     .member-message-text {
+        font-family: Roboto, 'sans-serif';
         padding: 4px;
         border: 1px solid #545454;
         border-radius: 3px;
         padding-bottom: 0;
         margin-bottom: 0px;
         padding-bottom: 0;
+        color: #fff;
+    }
+
+    .time {
+        font-size: 10px;
+        color: coral;
     }
     
 </style>

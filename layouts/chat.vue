@@ -82,10 +82,6 @@ export default {
     box-shadow: inset 0px 3px 8px 2px rgba(0, 0, 0, 0.3);
 }
 
-.active {
-    border: 1px solid #fff;
-}
-
 .member-wrap {
     display: flex;
     width: 100%;
@@ -94,7 +90,14 @@ export default {
     background-color: #333333;
     border-radius: 3px;
     margin-bottom: 1rem;
+    border: 2px solid #2F80ED;
+    padding-bottom: 3rem;
 }
+
+.active {
+    border: 2px solid #219653;
+}
+
 
 .member-img-wrap {
     margin: 8px;

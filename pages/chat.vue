@@ -2,13 +2,14 @@
     <div class="">
 
         
-        <chatHeader />
+        <chatHeader :chatRoom="chatRoom" />
         <article class='list-message'>
             <message
                 v-for="message in messages"
                 :key="message.text"
                 :name="message.name"
                 :text="message.text"
+                :time="message.time"
                 :owner="message.id === user.id"
             />
             
@@ -21,6 +22,7 @@
 import message from "@/components/message.vue";
 import chatForm from "@/components/chatForm.vue";
 import chatHeader from "@/components/chatHeader.vue";
+
 export default {
     components: {
         message,
@@ -39,6 +41,7 @@ export default {
             return this.$store.state.user;
         },
         messages() {
+            console.log(this.$store.state.messages)
             return this.$store.state.messages;
         },
         chatRoom() {

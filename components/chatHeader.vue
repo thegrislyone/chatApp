@@ -3,7 +3,7 @@
         <header class="chat-header">
             <div class="chat-header-wrap">
                 <h3 class="chat-header__title room-name" id="room-name">
-                    Room name
+                    {{ chatRoom }}
                 </h3>
             </div>
         </header>
@@ -14,7 +14,7 @@
 <script>
     export default {
         props: {
-
+            chatRoom: String
         }
     };
 </script>
