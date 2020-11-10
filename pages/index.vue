@@ -120,7 +120,6 @@
 
 <script>
 import {mapMutations} from 'vuex'
-
 export default {
   head: {
     title: "Здравствуйте"
@@ -134,13 +133,10 @@ export default {
     return{ 
       name: "",
       room: "",
-
       nameError: false,
       roomError: false,
-
       errorMessage: "",
       error: false,
-
       roomShow: true
     }
   },
@@ -161,13 +157,11 @@ export default {
     submitForm() {
       this.nameError = false
       this.roomError = false
-
       if (this.name && this.room) {
         const user = {
           name: this.name,
           room: this.room
         }
-
         this.$socket.emit('userJoined', user, data => {
           if (typeof data === 'string') {
             alert(data)
