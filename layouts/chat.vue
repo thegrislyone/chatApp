@@ -5,8 +5,8 @@
                 <div class="member-count">
                     <span class='member-count-text'>В комнате &mdash; n <!-- {{ users.count }} --></span>
                 </div>
-                <div v-for="u in users" :key="u.id">
-                    <section class='member-wrap member' :class="{ active: u.id === user.id}">
+                <div class='' v-for="u in users" :key="u.id">
+                    <div class='member-wrap member' :class="{ active: u.id === user.id}">
                         
                         <div class='member-img-wrap'>
                             <img class="member-img" src="@/static/member-icon.svg" alt="user-img">
@@ -16,14 +16,12 @@
                             <span>{{ u.name }}</span>
                         </div>
                     
-                    </section>
+                    </div>
                 </div>
             </article>
             <div class="chat">
             
                 <nuxt />
-
-                <button @click="exit">Выйти</button>
             
             </div>
         </div>
@@ -89,6 +87,7 @@ export default {
     max-width: 28rem;
     background-color: #333333;
     border-radius: 3px;
+    margin-bottom: 1rem;
 }
 
 .member-img-wrap {
@@ -124,6 +123,7 @@ export default {
     height: 100%;
     position: relative;
     background-color: #1C1328;
+    overflow-x: auto;
 }
 
 </style>

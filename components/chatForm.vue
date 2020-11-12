@@ -1,6 +1,5 @@
 <template>
     <div class="con">
-
         <section class='chat-form'>
             <div class="chat-form-wrap">
                 <input class='chat-form__input' type="text" name="chat-input" id="" v-model="text" @keydown.enter="sendMessage"
@@ -56,32 +55,27 @@ export default {
         max-width: 100%;
         padding-left: 30px;
         box-sizing: border-box;
+        font-size: 1.8rem;
+        padding: 0.7rem;
+        border: none;
+        padding-left: 2rem;
     }
 
     .chat-form-wrap {
         position: fixed;
-        bottom: 4%;
+        bottom: 2%;
         right: 3%;
     }
 
     .btn-send {
         position: fixed;
-        bottom:  4.7%;
+        bottom:  2.5%;
         right: 4%;
 
     }
 
-    .chat-form__input {
-        font-size: 1.8rem;
-        padding: 0.7rem;
-    }
-
     .icon-send {
         width: 3rem;
-    }
-
-    .chat-form__input {
-        border: none;
     }
 
 </style>

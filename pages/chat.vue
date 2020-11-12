@@ -1,7 +1,7 @@
 <template>
     <div class="">
 
-        <!-- <h1>Hello, {{ user.name }}</h1> -->
+        
         <chatHeader />
         <article class='list-message'>
             <message
@@ -53,6 +53,6 @@ export default {
 
 <style scoped>
     .list-message {
-        /* position: relative; */
+        padding-bottom: 7rem;
     }
 </style>
