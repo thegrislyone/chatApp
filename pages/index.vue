@@ -1,118 +1,116 @@
 <template>
-  <div class="wrapper">
-    <h1>
-      Заголовок
-    </h1>
+    <div class="wrapper">
+        <h1>
+            Заголовок
+        </h1>
 
-    <div v-if="errorBar" class="errorBar">
-      {{ errorBarMessage }}
-    </div>
+        <div v-if="errorBar" class="errorBar">
+            {{ errorBarMessage }}
+        </div>
 
-    <div v-if="error" class="error-message">
-      <h2>Введите данные</h2>
-    </div>
+        <div v-if="error" class="error-message">
+            <h2>Введите данные</h2>
+        </div>
 
-    <div class="form">
-      <div class="form__block">
-        <label for="nameField">Никнейм</label>
-        <input 
-          type="text" 
-          name="" 
-          id="nameField"
-          placeholder="Введите никнейм"
-          v-model="name"
-        >
-      </div>
-      
-       <div class="form__block">
-       <label for="roomField">Комната</label>
-        <input 
-          type="number" 
-          name="" 
-          id="roomField"
-          placeholder="Введите комнату"
-          v-model="room"
-        >
-      </div>
-      <button @click="submitForm">Подключиться</button>
+        <div class="form">
+            <div class="form__block">
+                <label for="nameField">Никнейм</label>
+                <input
+                    type="text"
+                    name=""
+                    id="nameField"
+                    placeholder="Введите никнейм"
+                    v-model="name"
+                />
+            </div>
+
+            <div class="form__block">
+                <label for="roomField">Комната</label>
+                <input
+                    type="number"
+                    name=""
+                    id="roomField"
+                    placeholder="Введите комнату"
+                    v-model="room"
+                />
+            </div>
+            <button @click="submitForm">Подключиться</button>
+        </div>
     </div>
-  </div>
 </template>
 
-
 <style>
-  .error-message {
+.error-message {
     color: red;
-  }
-  label {
+}
+label {
     display: block;
-  }
-  .wrapper {
+}
+.wrapper {
     padding: 15px;
-  }
-  .form__block {
+}
+.form__block {
     margin: 5px 0;
-  }
-  input {
+}
+input {
     border: 1px solid black;
-  }
+}
 </style>
 
 <script>
-import {mapMutations} from 'vuex'
+import { mapMutations } from "vuex";
 
 export default {
-  head: {
-    title: "Здравствуйте"
-  },
-  sockets: {
-    connect: function() {
-      console.log("Socket connected");
-    }
-  },
-  data() {
-    return{ 
-      name: "",
-      room: "",
-      errorBar: false,
-      errorBarMessage: "",
-      error: false
-    }
-  },
-  created() {
-  },
-  mounted() {
-    const { message } = this.$route.query
-    
-    if (message === 'noUser') {
-      this.errorBarMessage = "Введите данные"
-    } else if (message === 'leftChat') {
-      this.errorBarMessage = "Вы покинули чат"
-    }
-    this.errorBar = !!message
-  },
-  methods: {
-    ...mapMutations(['setUser']),
-    submitForm() {
-      if (this.name && this.room) {
-        const user = {
-          name: this.name,
-          room: this.room
+    head: {
+        title: "Здравствуйте"
+    },
+    sockets: {
+        connect: function() {
+            console.log("Socket connected");
         }
+    },
+    data() {
+        return {
+            name: "",
+            room: "",
+            errorBar: false,
+            errorBarMessage: "",
+            error: false
+        };
+    },
+    created() {},
+    mounted() {
+        const { message } = this.$route.query;
 
-        this.$socket.emit('userJoined', user, data => {
-          if (typeof data === 'string') {
-            alert(data)
-          } else {
-            user.id = data.userId
-            this.setUser(user)
-            this.$router.push('/chat')
-          }
-        })
-      } else {
-        this.error = true 
-      } 
+        if (message === "noUser") {
+            this.errorBarMessage = "Введите данные";
+        } else if (message === "leftChat") {
+            this.errorBarMessage = "Вы покинули чат";
+        }
+        this.errorBar = !!message;
+    },
+    methods: {
+        ...mapMutations(["setUser"]),
+        submitForm() {
+            if (this.name && this.room) {
+                const user = {
+                    name: this.name,
+                    room: this.room
+                };
+
+                this.$socket.emit("userJoined", user, data => {
+                    if (typeof data === "string") {
+                        alert(data);
+                    } else {
+                        user.id = data.userId;
+                        this.setUser(user);
+                        this.$router.push("/chat");
+                    }
+                });
+            } else {
+                this.error = true;
+            }
+        }
     }
-  }
-}
+};
 </script>
