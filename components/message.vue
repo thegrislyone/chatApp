@@ -32,9 +32,6 @@ export default {
 
 
 <style scoped>
-    .member-text {
-
-    }
 
     .message {
         text-align: center;
@@ -59,10 +56,11 @@ export default {
         border-radius: 3px; 
         width: 100%;
         max-width: max-content;
-        margin-left: 2rem;
         padding: 7px 19px;
         padding-bottom: 5px;
-        text-align: left;
+        margin-left: auto;
+        margin-right: 2rem;
+        text-align: right;
     }
 
     .member-other-message {
@@ -74,10 +72,10 @@ export default {
         max-width: -webkit-max-content;
         max-width: -moz-max-content;
         max-width: max-content;
-        margin-left: auto;
-        margin-right: 2rem;
+        margin-left: 2rem;
+        margin-right: auto;
         padding-bottom: 5px;
-        text-align: right;
+        text-align: left;
     }
 
     .member-message-name {
@@ -90,10 +88,6 @@ export default {
         color: #DCDCDC; 
         margin-bottom: 1px;
     }
-
-    /* .member-message {
-        
-    } */
 
     .member-message-text-wrpa {
         font-family: Roboto, 'sans-serif';
@@ -110,6 +104,7 @@ export default {
         padding-bottom: 0;
         margin-bottom: 0px;
         padding-bottom: 0;
+        color: #fff;
     }
     
 </style>
