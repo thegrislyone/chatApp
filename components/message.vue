@@ -42,7 +42,7 @@ export default {
         font-size: 1.1rem;
         font-weight: 300;
         display: inline-block;
-        margin-top: 1rem;
+        margin-top: 4rem;
         padding: .3rem 1rem;
         color: #ffffffc2;
         background-color: #333333;
@@ -98,6 +98,7 @@ export default {
     }
     
     .member-message-text {
+        font-family: Roboto, 'sans-serif';
         padding: 4px;
         border: 1px solid #545454;
         border-radius: 3px;

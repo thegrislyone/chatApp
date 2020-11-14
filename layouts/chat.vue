@@ -128,6 +128,8 @@ export default {
     position: relative;
     background-color: #1C1328;
     overflow-x: auto;
+
 }
+
 
 </style>

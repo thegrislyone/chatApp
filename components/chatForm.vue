@@ -43,7 +43,7 @@ export default {
     .chat-form {
         width: 100%;
         bottom: 0;
-        padding-right: 2.8rem;
+        /* padding-right: 2.8rem; */
     }
 
     .chat-form__input {
@@ -59,12 +59,13 @@ export default {
         padding: 0.7rem;
         border: none;
         padding-left: 2rem;
+        margin-left: 1.3rem;
     }
 
     .chat-form-wrap {
         position: fixed;
         bottom: 2%;
-        right: 3%;
+        width: calc(100% - 300px);
     }
 
     .btn-send {
