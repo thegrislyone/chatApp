@@ -137,7 +137,7 @@ export default {
       roomError: false,
       errorMessage: "",
       error: false,
-      roomShow: true
+      roomShow: false
     }
   },
   created() {

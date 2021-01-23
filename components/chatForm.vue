@@ -40,43 +40,6 @@ export default {
 </script>
 
 <style scoped>
-    .chat-form {
-        width: 100%;
-        bottom: 0;
-        padding-right: 2.8rem;
-    }
-
-    .chat-form__input {
-        background: #BDBDBD;
-        box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.25);
-        border-radius: 4px;
-        width: 81vw;
-        height: 68px;
-        max-width: 100%;
-        padding-left: 30px;
-        box-sizing: border-box;
-        font-size: 1.8rem;
-        padding: 0.7rem;
-        border: none;
-        padding-left: 2rem;
-    }
-
-    .chat-form-wrap {
-        position: fixed;
-        bottom: 2%;
-        right: 3%;
-        width: calc(100% - 300px);
-    }
-
-    .btn-send {
-        position: fixed;
-        bottom:  2.5%;
-        right: 4%;
-
-    }
-
-    .icon-send {
-        width: 3rem;
-    }
+    
 
 </style>

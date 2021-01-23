@@ -54,7 +54,5 @@ export default {
 
 
 <style scoped>
-    .list-message {
-        padding-bottom: 7rem;
-    }
+    
 </style>
